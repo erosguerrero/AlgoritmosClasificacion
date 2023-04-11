@@ -8,22 +8,14 @@ public class Main {
         ArrayList<double[]> points = new ArrayList<double[]>();
         
 
-        double[] pt1 = {-1.5, 2.0, 5.0, 0.0};
-        points.add(pt1);
-        double[] pt2 = {-2.0, -2.0, 0.0, 0.0};
-        points.add(pt2);
-        double[] pt3 = {1.0, 1.0, 2.0, 0.0};
-        points.add(pt3);
-        double[] pt4 = {1.5, 1.5, 1.2, 0.0};
-        points.add(pt4);
-        double[] pt5 = {1.0, 2.0, 5.6, 0.0};
-        points.add(pt5);
-        double[] pt6 = {1.0, -2.0, -2.0, 0.0};
-        points.add(pt6);
-        double[] pt7 = {1.0, -3.0, -2.0, 0.0};
-        points.add(pt7);
-        double[] pt8 = {1.0, -2.5, -4.5, 0.0};
-        points.add(pt8);
+        points.add(arrayOf(-1.5, 2.0, 5.0, 1.2));
+        points.add(arrayOf(-2.0, -2.0, 0.0,3.4));
+        points.add(arrayOf(1.0, 1.0, 2.0,2.2));
+        points.add(arrayOf(1.5, 1.5, 1.2,0.0));
+        points.add(arrayOf(1.0, 2.0, 5.6,0.0));
+        points.add(arrayOf(1.0, -2.0, -2.0,1.2));
+        points.add(arrayOf(1.0, -3.0, -2.0,1.0));
+        points.add(arrayOf(1.0, -2.5, -4.5,1.0));
         Lloyd gl = new Lloyd(points.toArray(new double[points.size()][2]));
  
         double[][] results = gl.getClusterPoints(4);
@@ -34,4 +26,14 @@ public class Main {
         }
 	}
 
+	
+    private static double[] arrayOf(double x, double y, double z, double w)
+    {
+        double[] a = new double[4];
+        a[0] = x;
+        a[1] = y;
+        a[2] = z;
+        a[3] = w;
+        return a;
+    }
 }
