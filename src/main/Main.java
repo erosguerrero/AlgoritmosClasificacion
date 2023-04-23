@@ -13,7 +13,6 @@ import auxiliar.LecturaDatos;
 public class Main {
 
 	public static void main(String[] args) {
-		//K-MEDIAS******************************************************
 		LecturaDatos.readDatos("./src/datos/Iris2Clases.txt");
 		ArrayList<double []> puntos= LecturaDatos.getDatos();
 		ArrayList<String> clases = LecturaDatos.getclases();
@@ -21,31 +20,14 @@ public class Main {
 		ArrayList<double []> centros = new ArrayList<double[]>();
 		centros.add(new double[] {4.6,3.0, 4.0, 0.0});
 		centros.add(new double[] {6.8, 3.4, 4.6, 0.7});
-		
-       
-        
+
+		//K-MEDIAS******************************************************
         ejecutarKmeans(puntos,centros,clases);
 		
 		//BAYES**********************************************************
-       /* ArrayList<double[]> points = new ArrayList<double[]>();
-        ArrayList<String> clases = new ArrayList<String>();
-
-        points.add(arrayOf(2.0, 3.0, 1.0, 1.2));
-        points.add(arrayOf(4.0, 5.0, 4.0,3.4));
-        points.add(arrayOf(6.0, 5.0, 7.0,2.2));
-        points.add(arrayOf(2.0, 2.0, 3.0,0.0));
-        points.add(arrayOf(5.0, 6.0, 6.0,0.0));
-        points.add(arrayOf(1.0, -2.0, -2.0,1.2));
-        points.add(arrayOf(1.0, -3.0, -2.0,1.0));
-        points.add(arrayOf(1.0, -2.5, -4.5,1.0));
-        
-        
-        ejecutarBayes();
         Bayes b = new Bayes();
-        b.execute();*/
-		
-		
-		
+        b.execute();
+        
 		//LLOYD**********************************************************
         /*
         Lloyd gl = new Lloyd(points.toArray(new double[points.size()][2]));
@@ -92,26 +74,21 @@ public class Main {
 	
 	
 	private static void ejecutarBayes() {
-		// Ejercicio 1, Hoja 2
+		/*
 		ArrayList<double []> puntos = new ArrayList<double []>();
-		puntos.add(new double[] {3,1});
-		puntos.add(new double[] {2,2});
-		puntos.add(new double[] {1,0});
-		puntos.add(new double[] {6,7});
-		puntos.add(new double[] {7,5});
-		puntos.add(new double[] {8,6});
-				
-		ArrayList<String> clases = new ArrayList<String>();//clase de cada punto
+		ArrayList<String> clases = new ArrayList<String>();
+		puntos.add(new double[] {1,2});
 		clases.add("Clase 1");
+		puntos.add(new double[] {2,1});
 		clases.add("Clase 1");
+		puntos.add(new double[] {0,3});
 		clases.add("Clase 1");
+		puntos.add(new double[] {4,5});
 		clases.add("Clase 2");
+		puntos.add(new double[] {2,4});
 		clases.add("Clase 2");
+		puntos.add(new double[] {3,3});
 		clases.add("Clase 2");
-		
-		ArrayList<double []> centros = new ArrayList<double[]>();
-		centros.add(new double[] {2,1});
-		centros.add(new double[] {7,6});
 		
 		Bayes b = new Bayes(puntos,clases);
 		b.execute();
@@ -126,6 +103,7 @@ public class Main {
 			System.out.println("Clase: " + c + "\n");
 			System.out.println(Auxiliar.matrix2String(mCov.get(c)));
 		}
+		*/
 	}
 	
     private static double[] arrayOf(double x, double y, double z, double w)
