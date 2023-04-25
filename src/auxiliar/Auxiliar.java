@@ -73,17 +73,15 @@ public class Auxiliar {
 	
 	public static String matrix2String(Matrix m) {
 		String s = "";
-		s += "---Matriz---------" + "\n";
 		for(int i = 0; i < m.getRowDimension(); i++) {
 			for (int j = 0; j <m.getColumnDimension(); j++) {
-				s += roundDecimals(m.get(i, j),3);
+				s += "	" + roundDecimals(m.get(i, j),3);
 				if (j != m.getColumnDimension() - 1) {
 					s += "  ";
 				}
 			}
 			s += "\n";
 		}
-		s += "------------------" + "\n";
 		return s;
 	}
 	 public static double roundDecimals(double valorInicial, int numeroDecimales) {

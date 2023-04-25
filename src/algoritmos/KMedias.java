@@ -4,7 +4,6 @@ package algoritmos;
 import java.util.ArrayList;
 
 import Jama.*;
-import auxiliar.AuxiliarNegocio;
 
 public class KMedias{
 	private double tolerancia = 0.01;
@@ -23,10 +22,10 @@ public class KMedias{
 		this.centros = new ArrayList<Matrix>();
 		this.centrosAnt = new ArrayList<Matrix>();
 		for(double [] p: _puntos) {
-			this.puntos.add(AuxiliarNegocio.getMatrix(p));
+			this.puntos.add(this.getMatrix(p));
 		}
 		for(double [] c: _c) {
-			this.centros.add(AuxiliarNegocio.getMatrix(c));
+			this.centros.add(this.getMatrix(c));
 		}
 	}
 
@@ -50,7 +49,7 @@ public class KMedias{
 		for(int i = 0;  i <this.centros.get(iCentro).getRowDimension(); i++) {
 			aux[i] = 0;
 		}
-		Matrix num = AuxiliarNegocio.getMatrix(aux);
+		Matrix num = this.getMatrix(aux);
 		double denom = 0;
 		for(int j = 0; j < this.U[iCentro].length; j++) {
 			double s = Math.pow(this.U[iCentro][j], this.b);
@@ -92,11 +91,11 @@ public class KMedias{
 	}
 	
 	public ArrayList<double[]> getCentros() {
-		return AuxiliarNegocio.matrix2centros(centros);
+		return this.matrix2centros(centros);
 	}
 
 	public void setCentros(ArrayList<double []> _centros) {
-		this.centros = AuxiliarNegocio.centros2Matrix(_centros);
+		this.centros = this.centros2Matrix(_centros);
 		this.centrosAnt =  new ArrayList<Matrix>();
 	}
 	public double getTolerancia() {
@@ -117,7 +116,7 @@ public class KMedias{
 	}
 	
 	public int clasificarNuevo(double[] punto) {
-		Matrix aux =  AuxiliarNegocio.getMatrix(punto);
+		Matrix aux =  this.getMatrix(punto);
 		int iClaseMejor = 0;
 		double dist;
 		double distMejor = d(aux,this.centros.get(0));
@@ -132,13 +131,37 @@ public class KMedias{
 	}
 
 	public ArrayList<double[]> getCentrosAnt() {
-		return AuxiliarNegocio.matrix2centros(centrosAnt);
+		return this.matrix2centros(centrosAnt);
 	}
 
 	public void setCentrosAnt(ArrayList<double[]> centrosAnt) {
-		this.centrosAnt = AuxiliarNegocio.centros2Matrix(centrosAnt);
+		this.centrosAnt = this.centros2Matrix(centrosAnt);
+	}
+	
+	private Matrix getMatrix(double [] dif) { //matriz columna
+		double [][] mDif = new double[dif.length][1];
+		for(int i = 0; i < dif.length; i++) {
+			mDif[i][0] = dif[i];
+		}
+		return Matrix.constructWithCopy(mDif);
 	}
 
+	private ArrayList<double[]> matrix2centros(ArrayList<Matrix> centros){
+		ArrayList<double[]> sol =  new ArrayList<double[]> ();
+		for(Matrix c: centros) {
+			sol.add(c.getRowPackedCopy());
+		}
+		return sol;
+	}
+
+	private ArrayList<Matrix> centros2Matrix(ArrayList<double[]> centros){
+		ArrayList<Matrix> sol =  new ArrayList<Matrix> ();
+		for(double[] c: centros) {
+			sol.add(this.getMatrix(c));
+		}
+		return sol;
+	}
+	
 	public double getB() {
 		return b;
 	}

@@ -23,11 +23,8 @@ public class Main {
 
 		//K-MEDIAS******************************************************
         ejecutarKmeans(puntos,centros,clases);
-		
 		//BAYES**********************************************************
-        //Bayes b = new Bayes();
-        //b.execute();
-        
+        ejecutarBayes(puntos,centros,clases);
 		//LLOYD**********************************************************
         ejecutarLloyd(puntos,centros,clases);
         
@@ -100,46 +97,41 @@ public class Main {
 			System.out.println("Clase del ejemplo 03: " +  clases.get(clase));
 	 }
 	 
-	private static void ejecutarBayes() {
-		/*
-		ArrayList<double []> puntos = new ArrayList<double []>();
-		ArrayList<String> clases = new ArrayList<String>();
-		puntos.add(new double[] {1,2});
-		clases.add("Clase 1");
-		puntos.add(new double[] {2,1});
-		clases.add("Clase 1");
-		puntos.add(new double[] {0,3});
-		clases.add("Clase 1");
-		puntos.add(new double[] {4,5});
-		clases.add("Clase 2");
-		puntos.add(new double[] {2,4});
-		clases.add("Clase 2");
-		puntos.add(new double[] {3,3});
-		clases.add("Clase 2");
-		
-		Bayes b = new Bayes(puntos,clases);
+	 private static void ejecutarBayes(ArrayList<double []> puntos, ArrayList<double []> centros, ArrayList<String> clases) {
+		Bayes b = new Bayes("src/Datos/Iris2Clases.txt");
 		b.execute();
-		System.out.println("########################################## \n");
-		System.out.println("Algoritmo de Bayes -  Ejercicio 1, Hoja 2");
-		System.out.println("..........................................");
-		System.out.println("Centros obtenidos:");
-		System.out.println(Auxiliar.centros2String(b.getCentros()));
-		System.out.println("Matrices de Covarianza:");
+		System.out.println("\n****************** [BAYES] **********************\n");
+		System.out.println("**** Centros **** ");
+		ArrayList<double[]> sol2 = b.getCentros();
+		System.out.println(Auxiliar.centros2String(sol2));
+		System.out.println("**** Covarianzas **** ");
 		HashMap<String, Matrix> mCov = b.getmCovarianzas();
 		for(String c: mCov.keySet()) {
-			System.out.println("Clase: " + c + "\n");
+			System.out.println("	**** " + c + "**** ");
 			System.out.println(Auxiliar.matrix2String(mCov.get(c)));
 		}
-		*/
+		
+		/*TEST01*/
+		LecturaDatos.readDatos("./src/datos/TestIris01.txt");
+		System.out.println("**** Resultados **** ");
+		ArrayList<double []> aux= LecturaDatos.getDatos();
+		double[] punto = aux.get(0);
+		String clase = b.clasificarNuevo(punto);
+		System.out.println("Clase del ejemplo 01: " +  clase);
+		
+		/*TEST02*/
+		LecturaDatos.readDatos("./src/datos/TestIris02.txt");
+		aux= LecturaDatos.getDatos();
+		punto = aux.get(0);
+		clase = b.clasificarNuevo(punto);
+		System.out.println("Clase del ejemplo 01: " +  clase);
+		
+		/*TEST02*/
+		LecturaDatos.readDatos("./src/datos/TestIris03.txt");
+		aux= LecturaDatos.getDatos();
+		punto = aux.get(0);
+		clase = b.clasificarNuevo(punto);
+		System.out.println("Clase del ejemplo 01: " +  clase);
 	}
 	
-    private static double[] arrayOf(double x, double y, double z, double w)
-    {
-        double[] a = new double[4];
-        a[0] = x;
-        a[1] = y;
-        a[2] = z;
-        a[3] = w;
-        return a;
-    }
 }

@@ -15,8 +15,8 @@ public class Bayes{
 	private HashMap<String, double []> centros;
 	private HashMap<String, Matrix> mCovarianzas;
 	
-	public Bayes() {
-        leerDatos();
+	public Bayes(String archivo) {
+        leerDatos(archivo);
 		this.centros = new HashMap<String, double []>();
 		this.mCovarianzas = new HashMap<String, Matrix>();
 	}
@@ -141,10 +141,10 @@ public class Bayes{
 		return Matrix.constructWithCopy(aux);
 	}
 	
-	private void leerDatos(){
+	private void leerDatos(String archivo){
 		this.puntos = new HashMap<String, ArrayList<double []>>();
 		try {
-			File f = new File("src/Datos/Iris2Clases.txt");
+			File f = new File(archivo);
 			FileReader r = new FileReader(f);
 			BufferedReader lectorLinea = new BufferedReader(r);
 			String l;

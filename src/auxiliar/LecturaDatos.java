@@ -36,8 +36,7 @@ public final class LecturaDatos {
 				datos.add(ejemplo);
 			}
 		} catch (IOException e ) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
+			e.printStackTrace();
 			
 		}
 		clases = new ArrayList<String>();
