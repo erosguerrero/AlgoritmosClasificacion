@@ -39,12 +39,13 @@ public class Main {
 	        KMedias k_medias = new KMedias(puntos,centros);
 			k_medias.execute();
 			ArrayList<double[]> sol2 = k_medias.getCentros();
-			System.out.println("\n****************** K-MEDIAS **********************\n");
+			System.out.println("\n****************** [K-MEDIAS] **********************\n");
 			System.out.println("**** Centros ****");
 			System.out.println(Auxiliar.centros2String(sol2));
 			System.out.println("**** Matriz U ****");
 			System.out.println(Auxiliar.u2String(k_medias.getU()));
 			
+			System.out.println("**** Resultados ****");
 			/*TEST01*/
 			LecturaDatos.readDatos("./src/datos/TestIris01.txt");
 			ArrayList<double []> aux= LecturaDatos.getDatos();
@@ -59,22 +60,24 @@ public class Main {
 			clase = k_medias.clasificarNuevo(punto);
 			System.out.println("Clase del ejemplo 02: " +  clases.get(clase));
 			
-			/*TEST02*/
+			/*TEST03*/
 			LecturaDatos.readDatos("./src/datos/TestIris03.txt");
 			aux= LecturaDatos.getDatos();
 			punto = aux.get(0);
 			clase = k_medias.clasificarNuevo(punto);
 			System.out.println("Clase del ejemplo 03: " +  clases.get(clase));
+
 	 }
 	
 	 private static void ejecutarLloyd(ArrayList<double []> puntos, ArrayList<double []> centros, ArrayList<String> clases) {
 	        Lloyd lloyd_alg = new Lloyd(puntos,centros);
 	        lloyd_alg.execute();
 			ArrayList<double[]> sol2 = lloyd_alg.getCentros();
-			System.out.println("\n****************** LLOYD **********************\n");
-			System.out.println("Centros obtenidos:");
+			System.out.println("\n****************** [LLOYD] **********************\n");
+			System.out.println("**** Centros ****");
 			System.out.println(Auxiliar.centros2String(sol2));
 			
+			System.out.println("**** Resultados ****");
 			/*TEST01*/
 			LecturaDatos.readDatos("./src/datos/TestIris01.txt");
 			ArrayList<double []> aux= LecturaDatos.getDatos();
@@ -89,7 +92,7 @@ public class Main {
 			clase = lloyd_alg.clasificarNuevo(punto);
 			System.out.println("Clase del ejemplo 02: " +  clases.get(clase));
 			
-			/*TEST02*/
+			/*TEST03*/
 			LecturaDatos.readDatos("./src/datos/TestIris03.txt");
 			aux= LecturaDatos.getDatos();
 			punto = aux.get(0);
