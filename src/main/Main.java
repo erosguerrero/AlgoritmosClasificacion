@@ -25,19 +25,14 @@ public class Main {
         ejecutarKmeans(puntos,centros,clases);
 		
 		//BAYES**********************************************************
-        Bayes b = new Bayes();
-        b.execute();
+        //Bayes b = new Bayes();
+        //b.execute();
         
 		//LLOYD**********************************************************
-        /*
-        Lloyd gl = new Lloyd(points.toArray(new double[points.size()][2]));
-        double[][] results = gl.getClusterPoints(2);
-        for (double[] point : results)
-        {
-            System.out.println("Cluster " + point[0] + ", " + point[1] + ", "
-                    + point[2]);
-        }
-        */
+        ejecutarLloyd(puntos,centros,clases);
+        
+
+        
 	}
 	
 	 private static void ejecutarKmeans(ArrayList<double []> puntos, ArrayList<double []> centros, ArrayList<String> clases) {
@@ -72,7 +67,36 @@ public class Main {
 			System.out.println("Clase del ejemplo 03: " +  clases.get(clase));
 	 }
 	
-	
+	 private static void ejecutarLloyd(ArrayList<double []> puntos, ArrayList<double []> centros, ArrayList<String> clases) {
+	        Lloyd lloyd_alg = new Lloyd(puntos,centros);
+	        lloyd_alg.execute();
+			ArrayList<double[]> sol2 = lloyd_alg.getCentros();
+			System.out.println("\n****************** LLOYD **********************\n");
+			System.out.println("Centros obtenidos:");
+			System.out.println(Auxiliar.centros2String(sol2));
+			
+			/*TEST01*/
+			LecturaDatos.readDatos("./src/datos/TestIris01.txt");
+			ArrayList<double []> aux= LecturaDatos.getDatos();
+			double[] punto = aux.get(0);
+			int clase = lloyd_alg.clasificarNuevo(punto);
+			System.out.println("Clase del ejemplo 01: " +  clases.get(clase));
+			
+			/*TEST02*/
+			LecturaDatos.readDatos("./src/datos/TestIris02.txt");
+			aux= LecturaDatos.getDatos();
+			punto = aux.get(0);
+			clase = lloyd_alg.clasificarNuevo(punto);
+			System.out.println("Clase del ejemplo 02: " +  clases.get(clase));
+			
+			/*TEST02*/
+			LecturaDatos.readDatos("./src/datos/TestIris03.txt");
+			aux= LecturaDatos.getDatos();
+			punto = aux.get(0);
+			clase = lloyd_alg.clasificarNuevo(punto);
+			System.out.println("Clase del ejemplo 03: " +  clases.get(clase));
+	 }
+	 
 	private static void ejecutarBayes() {
 		/*
 		ArrayList<double []> puntos = new ArrayList<double []>();
