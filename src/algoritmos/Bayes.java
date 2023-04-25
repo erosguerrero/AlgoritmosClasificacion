@@ -150,11 +150,10 @@ public class Bayes{
 			String l;
 			while ((l = lectorLinea.readLine()) != null) {
 				String[] punto = l.split(",");
-				
 				if(!puntos.containsKey(punto[4])) {
 					puntos.put(punto[4], new ArrayList<double[]>());
 				}
-				double[] d = {};
+				double[] d = new double[punto.length - 1];
 				for (int i = 0; i < punto.length - 1; i++) {
 					d[i] = Double.parseDouble(punto[i]);
 				}
