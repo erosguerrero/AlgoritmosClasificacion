@@ -59,14 +59,14 @@ public class Auxiliar {
 	public static String centros2String(ArrayList<double[]> centros) {
 		String text = "";
 		for(int i = 0; i < centros.size(); i++) {
-			text += (i+1) + ". [";
+			text += "c"+(i+1) + ": (";
 			for(int j = 0; j < centros.get(i).length; j++) {
 				text += roundDecimals(centros.get(i)[j],2);
 				if(j != centros.get(i).length - 1) {
 					text += ", ";
 				}
 			}
-			text += "] " + "\n";
+			text += ") " + "\n";
 		}
 		return text;
 	}
@@ -103,7 +103,6 @@ public class Auxiliar {
 	public static String u2String(double[][] u) {
 		// TODO Auto-generated method stub
 		String s = "";
-		s += "---Matriz---------" + "\n";
 		for(int i = 0; i < u.length; i++) {
 			for (int j = 0; j <u[i].length; j++) {
 				s += roundDecimals(u[i][j],3);
@@ -113,7 +112,6 @@ public class Auxiliar {
 			}
 			s += "\n";
 		}
-		s += "------------------" + "\n";
 		return s;
 	}
 

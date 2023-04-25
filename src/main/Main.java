@@ -40,9 +40,9 @@ public class Main {
 			k_medias.execute();
 			ArrayList<double[]> sol2 = k_medias.getCentros();
 			System.out.println("\n****************** K-MEDIAS **********************\n");
-			System.out.println("Centros obtenidos:");
+			System.out.println("**** Centros ****");
 			System.out.println(Auxiliar.centros2String(sol2));
-			System.out.println("Matriz de grados de pertenencia U:");
+			System.out.println("**** Matriz U ****");
 			System.out.println(Auxiliar.u2String(k_medias.getU()));
 			
 			/*TEST01*/
