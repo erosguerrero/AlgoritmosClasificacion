@@ -1,5 +1,6 @@
 package main;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,24 +13,25 @@ import auxiliar.LecturaDatos;
 
 public class Main {
 
-	public static void main(String[] args) {
-		LecturaDatos.readDatos("./src/datos/Iris2Clases.txt");
-		ArrayList<double []> puntos= LecturaDatos.getDatos();
-		ArrayList<String> clases = LecturaDatos.getclases();
-		
-		ArrayList<double []> centros = new ArrayList<double[]>();
-		centros.add(new double[] {4.6,3.0, 4.0, 0.0});
-		centros.add(new double[] {6.8, 3.4, 4.6, 0.7});
+	public static void main(String[] args) throws Exception {
+		try {
+			LecturaDatos.readDatos("./datos/Iris2Clases.txt");
+			ArrayList<double []> puntos= LecturaDatos.getDatos();
+			ArrayList<String> clases = LecturaDatos.getclases();
+			
+			ArrayList<double []> centros = new ArrayList<double[]>();
+			centros.add(new double[] {4.6,3.0, 4.0, 0.0});
+			centros.add(new double[] {6.8, 3.4, 4.6, 0.7});
 
-		//K-MEDIAS******************************************************
-        ejecutarKmeans(puntos,centros,clases);
-		//BAYES**********************************************************
-        ejecutarBayes(puntos,centros,clases);
-		//LLOYD**********************************************************
-        ejecutarLloyd(puntos,centros,clases);
-        
-
-        
+			//K-MEDIAS******************************************************
+	        ejecutarKmeans(puntos,centros,clases);
+			//BAYES**********************************************************
+	        ejecutarBayes(puntos,centros,clases);
+			//LLOYD**********************************************************
+	        ejecutarLloyd(puntos,centros,clases);
+		} catch (Exception e) {
+			System.setOut(new PrintStream("output.txt"));
+		}
 	}
 	
 	 private static void ejecutarKmeans(ArrayList<double []> puntos, ArrayList<double []> centros, ArrayList<String> clases) {
@@ -44,21 +46,21 @@ public class Main {
 			
 			System.out.println("**** Resultados ****");
 			/*TEST01*/
-			LecturaDatos.readDatos("./src/datos/TestIris01.txt");
+			LecturaDatos.readDatos("./datos/TestIris01.txt");
 			ArrayList<double []> aux= LecturaDatos.getDatos();
 			double[] punto = aux.get(0);
 			int clase = k_medias.clasificarNuevo(punto);
 			System.out.println("Clase del ejemplo 01: " +  clases.get(clase));
 			
 			/*TEST02*/
-			LecturaDatos.readDatos("./src/datos/TestIris02.txt");
+			LecturaDatos.readDatos("./datos/TestIris02.txt");
 			aux= LecturaDatos.getDatos();
 			punto = aux.get(0);
 			clase = k_medias.clasificarNuevo(punto);
 			System.out.println("Clase del ejemplo 02: " +  clases.get(clase));
 			
 			/*TEST03*/
-			LecturaDatos.readDatos("./src/datos/TestIris03.txt");
+			LecturaDatos.readDatos("./datos/TestIris03.txt");
 			aux= LecturaDatos.getDatos();
 			punto = aux.get(0);
 			clase = k_medias.clasificarNuevo(punto);
@@ -76,21 +78,21 @@ public class Main {
 			
 			System.out.println("**** Resultados ****");
 			/*TEST01*/
-			LecturaDatos.readDatos("./src/datos/TestIris01.txt");
+			LecturaDatos.readDatos("./datos/TestIris01.txt");
 			ArrayList<double []> aux= LecturaDatos.getDatos();
 			double[] punto = aux.get(0);
 			int clase = lloyd_alg.clasificarNuevo(punto);
 			System.out.println("Clase del ejemplo 01: " +  clases.get(clase));
 			
 			/*TEST02*/
-			LecturaDatos.readDatos("./src/datos/TestIris02.txt");
+			LecturaDatos.readDatos("./datos/TestIris02.txt");
 			aux= LecturaDatos.getDatos();
 			punto = aux.get(0);
 			clase = lloyd_alg.clasificarNuevo(punto);
 			System.out.println("Clase del ejemplo 02: " +  clases.get(clase));
 			
 			/*TEST03*/
-			LecturaDatos.readDatos("./src/datos/TestIris03.txt");
+			LecturaDatos.readDatos("./datos/TestIris03.txt");
 			aux= LecturaDatos.getDatos();
 			punto = aux.get(0);
 			clase = lloyd_alg.clasificarNuevo(punto);
@@ -98,7 +100,7 @@ public class Main {
 	 }
 	 
 	 private static void ejecutarBayes(ArrayList<double []> puntos, ArrayList<double []> centros, ArrayList<String> clases) {
-		Bayes b = new Bayes("src/Datos/Iris2Clases.txt");
+		Bayes b = new Bayes("./datos/Iris2Clases.txt");
 		b.execute();
 		System.out.println("\n****************** [BAYES] **********************\n");
 		System.out.println("**** Centros **** ");
@@ -112,7 +114,7 @@ public class Main {
 		}
 		
 		/*TEST01*/
-		LecturaDatos.readDatos("./src/datos/TestIris01.txt");
+		LecturaDatos.readDatos("./datos/TestIris01.txt");
 		System.out.println("**** Resultados **** ");
 		ArrayList<double []> aux= LecturaDatos.getDatos();
 		double[] punto = aux.get(0);
@@ -120,14 +122,14 @@ public class Main {
 		System.out.println("Clase del ejemplo 01: " +  clase);
 		
 		/*TEST02*/
-		LecturaDatos.readDatos("./src/datos/TestIris02.txt");
+		LecturaDatos.readDatos("./datos/TestIris02.txt");
 		aux= LecturaDatos.getDatos();
 		punto = aux.get(0);
 		clase = b.clasificarNuevo(punto);
 		System.out.println("Clase del ejemplo 01: " +  clase);
 		
 		/*TEST02*/
-		LecturaDatos.readDatos("./src/datos/TestIris03.txt");
+		LecturaDatos.readDatos("./datos/TestIris03.txt");
 		aux= LecturaDatos.getDatos();
 		punto = aux.get(0);
 		clase = b.clasificarNuevo(punto);
