@@ -41,7 +41,7 @@ public class Main {
 			System.out.println("\n****************** [K-MEDIAS] **********************\n");
 			System.out.println("**** Centros ****");
 			System.out.println(Auxiliar.centros2String(sol2));
-			System.out.println("**** Matriz U ****");
+			System.out.println("**** Matriz U (traspuesta) ****");
 			System.out.println(Auxiliar.u2String(k_medias.getU()));
 			
 			System.out.println("**** Resultados ****");

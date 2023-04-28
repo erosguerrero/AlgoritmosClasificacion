@@ -101,18 +101,18 @@ public class Auxiliar {
 	public static String u2String(double[][] u) {
 		// TODO Auto-generated method stub
 		String s = "";
-		for(int i = 0; i < u.length; i++) {
-			for (int j = 0; j <u[i].length; j++) {
-				s += roundDecimals(u[i][j],3);
-				if (j != u[i].length - 1) {
-					s += "  ";
-				}
+
+		for (int j = 0; j <u[0].length; j++) {
+			for(int k = 0; k < u.length ;k++) {
+			s += roundDecimals(u[k][j],3);
+			s += "  ";
 			}
 			s += "\n";
 		}
+			
 		return s;
 	}
-
+	
 	public static String centrosIni2String(ArrayList<double[]> centros) {
 		String text = "";
 		for(int i = 0; i < centros.size(); i++) {
